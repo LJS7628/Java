@@ -1,0 +1,71 @@
+package zz.hello_world;
+
+class MyStack {
+	private String[] data;
+
+	public MyStack() {
+		data = new String[0];
+	}
+
+	public void push(String elem) {
+		String[] newData = new String[data.length + 1];
+		for (int i = 0; i < data.length; i++) {
+			newData[i] = data[i];
+		}
+		newData[newData.length - 1] = elem;
+		data = newData;
+	}
+
+	public String pop() {
+		if (data.length == 0)
+			return null;
+		String retVal = data[data.length - 1];
+		String[] newData = new String[data.length - 1];
+		for (int i = 0; i < newData.length; i++) {
+			newData[i] = data[i];
+		}
+		data = newData;
+		return retVal;
+	}
+}
+
+class GenericStack<E> {
+	private Object[] data;
+
+	public GenericStack() {
+		data = new Object[0];
+	}
+
+	public void push(E elem) {
+		Object[] newData = new Object[data.length + 1];
+		for (int i = 0; i < data.length; i++) {
+			newData[i] = data[i];
+		}
+		newData[newData.length - 1] = elem;
+		data = newData;
+	}
+
+	public E pop() {
+		if (data.length == 0)
+			return null;
+		E retVal = (E) data[data.length - 1];
+		Object[] newData = new Object[data.length - 1];
+		for (int i = 0; i < newData.length; i++) {
+			newData[i] = data[i];
+		}
+		data = newData;
+		return retVal;
+	}
+}
+public class Application {
+	public static void main(String[] args) {
+		GenericStack<String> stack = new GenericStack<String>();
+		stack.push("3");
+		stack.push("2");
+		stack.push("1");
+		
+		System.out.println(stack.pop()); // 출력: 1
+		System.out.println(stack.pop()); // 출력: 2
+		System.out.println(stack.pop()); // 출력: 3
+	}
+}

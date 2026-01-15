@@ -1,0 +1,67 @@
+package kr.ac.halla.fileprocessing;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashSet;
+import java.util.Iterator;
+
+public class Hash {
+
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new FileReader("c:\\Users\\user\\Email-EuAll.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("c:\\Users\\user\\Email-EuAll2.txt"));
+
+		HashSet<Frequency> frequencySet = new HashSet<Frequency>();
+		int cnt = 0;
+		while (true) {
+			String line = br.readLine();
+			if (line == null)
+				break;
+			if (line.startsWith("#"))
+				continue;
+			String[] arr = line.split("\t");
+			int left = Integer.parseInt(arr[0]);
+			// frequencySet을 찾아봐서 left가 만약 있다면, count값을 1 늘려주고
+			// 그렇지않다면, count값이 1인 frequency를 생성해서 넣겠다.
+			Iterator<Frequency> iterator = frequencySet.iterator();
+			boolean exist = false;
+			while (iterator.hasNext()) {
+				Frequency freq = iterator.next();
+				if (freq.getId() == left) {
+					freq.setCount(freq.getCount() + 1);
+					exist = true;
+					break;
+				}
+			}
+			if (exist == false) {
+				frequencySet.add(new Frequency(left, 1));
+			}
+
+			int right = Integer.parseInt(arr[1]);
+			iterator = frequencySet.iterator();
+			exist = false;
+			while (iterator.hasNext()) {
+				Frequency freq = iterator.next();
+				if (freq.getId() == right) {
+					freq.setCount(freq.getCount() + 1);
+					exist = true;
+					break;
+				}
+			}
+			if (exist == false) {
+				frequencySet.add(new Frequency(right, 1));
+			}
+			System.out.println(cnt++);
+		}
+		Iterator<Frequency> iterator = frequencySet.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
+		br.close();
+	}
+
+}

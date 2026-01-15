@@ -1,0 +1,40 @@
+package kr.ac.halla.fileprocessing;
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Stack;
+
+public class example5 {
+
+	public static void main(String[] args) {
+
+		Stack<Double> stack = new Stack<Double>();
+		
+		stack.push(3.5);
+		stack.push(5.4);
+		stack.push(5.4);
+		stack.push(4.9);
+		stack.push(9.1);
+		stack.push(12.5);
+		
+		while (stack.isEmpty()==false) 
+		{
+			System.out.println(stack.pop());
+		}
+
+		Queue<String> queue = new LinkedList<String>();
+		
+		queue.add("a");
+		queue.add("b");
+		queue.add("c");
+		queue.add("d");
+		queue.add("e");
+        
+
+		while(queue.isEmpty()==false) 
+		{
+			System.out.println(queue.remove());
+		}
+	}
+
+}

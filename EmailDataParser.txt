@@ -1,0 +1,58 @@
+package kr.ac.halla.fileprocessing;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+/**
+ * Hello world!
+ *
+ */
+public class App {
+	public static void main(String[] args) throws IOException {
+
+		BufferedReader br = new BufferedReader(new FileReader("c:\\Users\\user\\Email-EuAll.txt"));
+		BufferedWriter bw = new BufferedWriter(new FileWriter("c:\\Users\\user\\Email-EuAll2.txt"));
+		EmailSending[] emailSendingArr = new EmailSending[1000000];
+		int i = 0;
+		int Count = 0;
+		int idCount = 0;
+		int max = Integer.MIN_VALUE;
+		while (true) {
+			String line = br.readLine();
+
+			if (line == null)
+				break;
+			Count++;
+			if (line.startsWith("#"))
+				continue;
+
+			String[] arr = line.split("\t");
+
+			int left = Integer.parseInt(arr[0]);
+			int right = Integer.parseInt(arr[1]);
+			idCount = arr.length;
+
+			if (max < left) {
+				max = left;
+			}
+			if (max < right) {
+				max = right;
+			}
+
+			EmailSending s = new EmailSending(left, right);
+			emailSendingArr[i] = s;
+			i++;
+			System.out.println(s);
+
+		}
+
+		System.out.println(Count);
+		System.out.println(max);
+		br.close();
+		bw.close();
+	}
+}

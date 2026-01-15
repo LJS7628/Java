@@ -1,0 +1,45 @@
+package kr.ac.halla.fileprocessing;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class example3 {
+    public static void main(String[] args)
+    {
+    	Integer[] intArr = new Integer[3];
+    	intArr[0] =3;
+    	intArr[1]= 6;
+    	intArr[2]= 9;
+    	
+    	ArrayList<Integer> intArrayList = new ArrayList<Integer>();
+    	intArrayList.add(3);
+    	intArrayList.add(6);
+    	intArrayList.add(9);
+    	System.out.println(intArrayList);
+    	// remove(idx) : 해당 idx에 대한 값을 치워서 반환한다.
+    	Integer r1 = intArrayList.remove(1);
+    	System.out.println(r1);
+    	System.out.println(intArrayList);
+    	intArrayList.add(12);
+    	intArrayList.add(15);
+    	intArrayList.add(9);
+    	System.out.println(intArrayList);
+    	Integer nine =9;
+    	intArrayList.remove(nine);
+    	System.out.println(intArrayList);
+    	
+    	System.out.println(intArrayList.get(2));
+    	for(int i =0; i<intArrayList.size();i++)
+    	{
+    		System.out.println(intArrayList.get(i));
+    	}
+    	
+    	Iterator<Integer> iterator = intArrayList.iterator();
+		while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
+		System.out.println(intArrayList.size());
+
+    	
+    }
+}

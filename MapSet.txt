@@ -1,0 +1,76 @@
+package kr.ac.halla.fileprocessing;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map.Entry;
+import java.util.Set;
+
+public class example {
+
+	public static void main(String[] args) {
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		map.put(0, 3);
+		map.put(1, 10);
+		map.put(2, 4);
+		map.put(3, 13);
+
+		// ����: map �ȿ� �ִ� key, value�� ���� �ϳ��ϳ��� ���� ���̴�.
+		// 1) map �ȿ� �ִ� key�� �ߺ����� set���� ������ �� �ִ� keySet() �̶�� �޼ҵ带 ���ؼ�
+		// keySet()�� ��ҵ��� �ϳ��ϳ��� �� �� �ְ� �ϴ� iterator�� �����ͼ�
+		Iterator<Integer> keyIterator = map.keySet().iterator();
+		while (keyIterator.hasNext()) {
+			// �� key�� ���� �ͼ�
+			Integer key = keyIterator.next();
+			// map���� �ش� key�� ����  value�� �����ͼ�
+			Integer value = map.get(key);
+			// ����Ѵ�. 
+			System.out.println(key + " : " + value);
+		}
+
+		HashMap<Integer,String> idName = new HashMap<Integer,String>();
+    	
+    	System.out.println(idName.isEmpty());
+    	
+    	idName.put(18174,"jack");
+    	idName.put(201511114,"jackson");
+    	idName.put(20151234,"wonder");
+    	
+    	System.out.println(idName.size());
+    	
+    	idName.put(20151234,"wonder2");
+    	
+    	System.out.println(idName.size());
+    	
+    	System.out.println(idName.isEmpty());
+    	// containsKey: �־��� key�� map �ȿ� �����ϴ³�? True : false
+    	idName.containsKey(idName.containsKey(18174));
+    	idName.containsKey(idName.containsKey(18173));
+    	idName.containsKey(idName.containsValue("jackson"));
+    	idName.containsKey(idName.containsValue("jackson2"));
+    	
+    	System.out.println(idName.get(20151234));
+		System.out.println(idName.get(123));
+		System.out.println(idName);
+		String val = idName.remove(20151111);
+		System.out.println(val);
+		String val2 = idName.remove(201511114);
+		System.out.println(val2);
+
+
+		//Set 사용
+
+
+		Set<Entry<Integer, Integer>> entrySet = map.entrySet();
+		Iterator<Entry<Integer, Integer>> entryIterator = entrySet.iterator();
+		while (entryIterator.hasNext()) {
+			Entry<Integer, Integer> entry = entryIterator.next();
+			// ���⿡ �ڵ� �ۼ�: ������ ��Ҹ� ����϶�
+			Integer key = keyIterator.next();
+			Integer value = map.get(key);
+			System.out.println(key + " : " + value);
+		}
+
+	}
+
+}
